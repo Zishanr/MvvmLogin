@@ -21,6 +21,7 @@ import dagger.android.HasActivityInjector;
 
 public class MainActivity extends AppCompatActivity implements LifecycleOwner ,HasActivityInjector{
 
+    private static final String TAG = MainActivity.class.getName();
     private LoginViewModel viewModel;
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner ,H
 
 
         observeViewModel(viewModel);
-        viewModel.login(new SignIn("uni2@yopmail.com","Qwerty123"));
+        viewModel.login(new SignIn("",""));
     }
 
     private void observeViewModel(LoginViewModel viewModel) {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner ,H
         viewModel.getSignInLiveData().observe(this, projects -> {
             if (projects != null) {
 
-                Log.e("Login","logedin");
+                Log.e(TAG,"loggedin");
             }
         });
     }
